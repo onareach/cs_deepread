@@ -56,7 +56,7 @@ The technical architecture of the application is a three-tier application (datab
 
 #### Target Phase 1 Folder and File Structure
 
-    cs_deepread/										 ← found in CS_DeepRead/frontend/ folder
+    cs_deepread/  (found in CS_DeepRead/frontend/ folder)
     ├── public/
     │   └── uploads/                 ← stores uploaded images (browser-accessible)
     │
