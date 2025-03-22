@@ -2,7 +2,7 @@
 
 The purpose of this application is to use artificial intelligence to store and discover insights found in the writings of Mary Baker Eddy. The application is intended to be a successor to the Concord application, which supports textual search capacities, but no semantic search functionality.
 
-The technical architecture of the application is a three-tier application (database, back-end server, and webpage), which makes API calls from the backend to OpenAI API endpoints. The back-end is currently written in Python using Flask and hosted on Heroku (https://www.heroku.com/). The front-end is written in JavaScript using a Next.js (https://nextjs.org/docs) hosted by Vercel (https://vercel.com/).
+The technical architecture of the application is a three-tier application (database, back-end server, and webpage), which makes API calls from the backend to OpenAI API endpoints. The back-end is currently written in Python using Flask and hosted on Heroku (https://www.heroku.com/). The front-end is written in JavaScript using Next.js (https://nextjs.org/docs) hosted by Vercel (https://vercel.com/).
 
 ### Project Phases
 
@@ -56,9 +56,9 @@ The technical architecture of the application is a three-tier application (datab
 
 #### Target Phase 1 Folder and File Structure
 
-    cs_deepread/
+    cs_deepread/										 ← found in CS_DeepRead/frontend/ folder
     ├── public/
-    │   └── uploads/                  ← stores uploaded images (browser-accessible)
+    │   └── uploads/                 ← stores uploaded images (browser-accessible)
     │
     ├── src/
     │   ├── app/
@@ -82,7 +82,7 @@ The technical architecture of the application is a three-tier application (datab
     ├── tailwind.config.js           ← Tailwind scan paths + extensions
     ├── tsconfig.json                ← TypeScript project settings
     ├── package.json                 ← Project metadata and dependencies
-    
+
 
 
 ​    
