@@ -119,7 +119,7 @@ The output is:
 
 #### 2. Install the Core Packages
 
-If you're starting from fresh, run the following commands to install all of the runtime ackages and development dependencies:
+If you're starting from fresh, run the following commands to install all of the runtime packages and development dependencies:
 
     npm install next react react-dom tailwindcss postcss autoprefixer lucide-react react-dropzone
     npm install --save-dev typescript @types/react @types/react-dom @types/node
