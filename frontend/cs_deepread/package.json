@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-tooltip": "^1.1.8",
     "autoprefixer": "^10.4.21",
     "lucide-react": "^0.266.0",
     "next": "13.4.19",
