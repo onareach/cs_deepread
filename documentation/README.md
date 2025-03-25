@@ -1,6 +1,6 @@
 # DeepRead
 
-The purpose of this application is to use artificial intelligence to store and discover insights found in the writings of Mary Baker Eddy. The application is intended to be a successor to the Concord application, which supports textual search capacities, but no semantic search functionality.
+The purpose of this application is to use artificial intelligence to store and discover insights found in the writings of Mary Baker Eddy. The application is intended to be a successor to the Concord application, which supports textual search capacities, but has no semantic search functionality.
 
 The technical architecture of the application is a three-tier application (database, back-end server, and webpage), which makes API calls from the backend to OpenAI API endpoints. The back-end is currently written in Python using Flask and hosted on Heroku (https://www.heroku.com/). The front-end is written in JavaScript using Next.js (https://nextjs.org/docs) hosted by Vercel (https://vercel.com/).
 
@@ -62,32 +62,61 @@ The technical architecture of the application is a three-tier application (datab
     │
     ├── src/
     │   ├── app/
+    │   │   ├── api/
+    │   │   │    └── preview/
+    │   │   │        └── route.ts     ← [DOCUMENTATION OF PURPOSE TO COME]
+    │   │   │    └── upload/
+    │   │   │        └── route.ts     ← backend API route for file upload
     │   │   ├── layout.tsx           ← app-wide layout (imports Header)
     │   │   ├── page.tsx             ← homepage (default route)
-    │   │   ├── upload/
-    │   │   │   └── page.tsx         ← /upload page (uses ImageUpload)
     │   │   ├── search/
     │   │   │   └── page.tsx         ← /search page
     │   │   ├── settings/
     │   │   │   └── page.tsx         ← /settings page
-    │   │   └── api/
-    │   │       └── upload/
-    │   │           └── route.ts     ← backend API route for file upload
+    │   │   ├── upload/
+    │   │       └── page.tsx         ← /upload page (uses ImageUpload)
     │   │
     │   ├── components/
+    │   │   ├── FileTree.tsx         ← Search current program file structure
     │   │   ├── Header.tsx           ← Top nav bar with tabs, profile menu
     │   │   └── ImageUpload.tsx      ← Drag/drop UI + preview + uploads via API
     │
+    ├── next-env.d.ts                ← Enables TypeScript support for Next.js
+    ├── package.json                 ← Project metadata and dependencies
     ├── postcss.config.js            ← Tailwind CSS config for PostCSS
     ├── tailwind.config.js           ← Tailwind scan paths + extensions
     ├── tsconfig.json                ← TypeScript project settings
-    ├── package.json                 ← Project metadata and dependencies
+
+
+#### Notes on certain files:
+
+**frontend/cs_deepread/next-env.d.ts**
+
+The `frontend/cs_deepread/next-env.d.ts` file enables TypeScript support for Next.js-specific types and features. (A *type* in this context defines the structure and behavior that a variable or function is allowed to have. In simple terms, a *type* is a label with rules that tells the TypeScript compiler, "This variable/function should look or behave like this." For example, the code **let name: string = "Alice";** ensures the variable **name** only holds text.)
+
+The `next-env.d.ts` file makes these Next.js types – like `NextPage`, `NextApiRequest`, and `NextApiResponse` – available globally, so you don’t need to import them in every file. It’s automatically referenced during compilation, allowing TypeScript to recognize and use these types throughout the app. This improves type-checking and editor features like autocomplete, suggestions, and error checking (e.g., in VS Code).
+
+In short, `next-env.d.ts` acts as a TypeScript "bootstrapper," telling the compiler: “This is a Next.js app – load the right types so everything works.”
+
+The reason that *types* matter in Next.js is that Next.js uses *custom types* to describe special objects and behaviors, like:
+
+- **NextPage** : the type for a *page* component
+- **NextApiRequest** : the type for the *request object* in an API route
+- **NextApiResponse** : the type for the *response object*
+
+Example:
+
+    import { NextApiRequest, NextApiResponse } from 'next'
+    
+    export default function handler(req: NextApiRequest, res: NextApiResponse) {
+      res.status(200).json({ message: "Hello!" });
+    }
 
 
 
-​    
 
-### Step 1: Set Up Next.js Project
+
+### Step 1: Set Up Project
 
 #### 1. Create a Next.js app and Install Dependencies
 
@@ -122,7 +151,7 @@ The output is:
 If you're starting from fresh, run the following commands to install all of the runtime packages and development dependencies:
 
     npm install next react react-dom tailwindcss postcss autoprefixer lucide-react react-dropzone
-    npm install --save-dev typescript @types/react @types/react-dom @types/node
+    npm install --save-dev typescript @types/react @types/react-dom @types/node @radix-ui/react-tooltip
 
 If you ever need to re-install from scratch:
 
@@ -149,11 +178,12 @@ Here is a list of the core packages that need to be installed, along with a brie
 
 #### 3. Install devDependencies (set by `tailwindcss init -p`)
 
-| Dev Package        | Purpose                                |
-| ------------------ | -------------------------------------- |
-| `@types/react`     | Type definitions for React             |
-| `@types/react-dom` | Type definitions for ReactDOM          |
-| `@types/node`      | Node.js types (for backend API routes) |
+| Dev Package               | Purpose                                |
+| ------------------------- | -------------------------------------- |
+| `@radix-ui/react-tooptip` | Enable pop-up previews on hyperlinks   |
+| `@types/react`            | Type definitions for React             |
+| `@types/react-dom`        | Type definitions for ReactDOM          |
+| `@types/node`             | Node.js types (for backend API routes) |
 
 
 
