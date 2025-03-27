@@ -14,6 +14,8 @@ export default function FileViewer({ params }: Props) {
     : [params.filepath];
 
   const relativePath = filePathArray.join("/");
+  // The "cwd" in the next line if short for Current Working Directory.
+  // const fullPath = path.join(process.cwd(), ...filePathArray);  // old path specification
   const fullPath = path.join(process.cwd(), "src", ...filePathArray);
 
   // Check if the file exists

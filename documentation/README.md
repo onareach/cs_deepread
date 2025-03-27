@@ -64,9 +64,9 @@ The technical architecture of the application is a three-tier application (datab
     │   ├── app/
     │   │   ├── api/
     │   │   │    └── preview/
-    │   │   │        └── route.ts     ← [DOCUMENTATION OF PURPOSE TO COME]
+    │   │   │        └── route.ts     ← API route for free tree in Settings
     │   │   │    └── upload/
-    │   │   │        └── route.ts     ← backend API route for file upload
+    │   │   │        └── route.ts     ← API route for file upload
     │   │   ├── layout.tsx           ← app-wide layout (imports Header)
     │   │   ├── page.tsx             ← homepage (default route)
     │   │   ├── search/

@@ -25,8 +25,17 @@ export default function FileTree({ tree }: FileTreeProps) {
 }
 
 function TreeNodeItem({ node, level = 0 }: { node: TreeNode; level?: number }) {
+  /* Create a boolen value called "expanded", that updated with the function setExpanded, and which has
+  a beginning value of True. */
   const [expanded, setExpanded] = useState(true);
+  /* If a node has children, it's a folder — otherwise, it's a file. (The double exclamation marks (!!)
+  have the effect of reading the value node.children as a boolean - if children, then this constant's
+  value is true and the node is a folder; if the node doesn't have children, then the value is false 
+  and the node is a file. */
   const isFolder = !!node.children;
+  /* Create a style object appropriately called "indent", which is the amount of left padding the node
+  has based on it’s level in the tree. The deeper the node is in the tree, the larger the indent is. 
+  For every level down in the tree, the indent value is 1.25 times the rem (Root EleMent font size. */
   const indent = { paddingLeft: `${level * 1.25}rem` };
 
   return (

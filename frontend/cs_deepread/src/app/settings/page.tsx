@@ -58,6 +58,7 @@ function convertToNodeArray(obj: any, parentPath = ""): TreeNode[] {
 }
 
 export default function SettingsPage() {
+  //const sourceDir = process.cwd(); // Use this line if you want file tree to expand above src/
   const sourceDir = path.join(process.cwd(), "src");
   const files = getAllFiles(sourceDir);
   const fileTree = buildFileTree(files);
@@ -66,11 +67,15 @@ export default function SettingsPage() {
   return (
     <div className="max-w-4xl mx-auto mt-10 px-4">
       <h2 className="text-2xl font-bold mb-6">⚙️ Settings</h2>
+        <section>
+          <h3 className="text-xl font-semibold mb-1">Current Code</h3>
 
-      <section>
-        <h3 className="text-xl font-semibold mb-4">📂 Current Code</h3>
-        <FileTree tree={treeNodes} />
-      </section>
+            <div className="text-gray-800 font-semibold mb-2">
+              📁 {`${path.basename(process.cwd())}/src`}
+            </div>
+
+          <FileTree tree={treeNodes} />
+        </section>
     </div>
   );
 }

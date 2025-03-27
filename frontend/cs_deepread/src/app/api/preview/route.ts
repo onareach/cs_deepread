@@ -10,8 +10,9 @@ export async function GET(request: Request) {
   if (!relativePath) {
     return new NextResponse("Missing path", { status: 400 });
   }
-
-  const filePath = path.join(process.cwd(), "src", ...relativePath.split("/"));
+  
+  const filePath = path.join(process.cwd(), ...relativePath.split("/"));
+  // const filePath = path.join(process.cwd(), "src", ...relativePath.split("/")); // old file path const
 
   try {
     const fullText = fs.readFileSync(filePath, "utf-8");
