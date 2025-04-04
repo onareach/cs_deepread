@@ -14,7 +14,7 @@ The response:
 psql (PostgreSQL) 14.17 (Homebrew)
 ```
 
-Good to go!
+This response shows that PostgreSQL is installed locally.
 
 
 
