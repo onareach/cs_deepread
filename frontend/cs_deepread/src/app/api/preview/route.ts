@@ -1,6 +1,9 @@
 // src/app/api/preview/route.ts
-import fs from "fs";
-import path from "path";
+/* This is a Next.js API route using the new App Router (Next 13+) conventions. 
+It's used to respond to GET requests made to the /api/preview endpoint of your application. */
+
+import fs from "fs"; // Used to interact with the filesystem (reading files in this case).
+import path from "path"; // Helps build platform-safe file paths.
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
@@ -11,8 +14,8 @@ export async function GET(request: Request) {
     return new NextResponse("Missing path", { status: 400 });
   }
   
-  const filePath = path.join(process.cwd(), ...relativePath.split("/"));
-  // const filePath = path.join(process.cwd(), "src", ...relativePath.split("/")); // old file path const
+  //const filePath = path.join(process.cwd(), ...relativePath.split("/")); // used when folder/file tree expanded beyond src.
+  const filePath = path.join(process.cwd(), "src", ...relativePath.split("/"));
 
   try {
     const fullText = fs.readFileSync(filePath, "utf-8");
