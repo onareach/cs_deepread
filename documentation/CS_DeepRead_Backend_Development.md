@@ -1,6 +1,32 @@
 # CS DeepRead Backend Development
 
-The overall plan for developing the backend components of CS DeepRead is to build them locally and then replicate them to Heroku when they are stable.
+The overall plan for developing the backend components of CS DeepRead is to build them locally and then replicate them to Heroku when they are stable
+
+The back-end components include:
+
+1. PostgreSQL database for storing and retrieving book text
+
+2. OpenAI text parser
+
+   
+
+### Review of Functionality
+
+**1.  User uploads image** via drag-and-drop
+
+**2.  Image is saved** to `/public/uploads` 
+
+**3.  Backend API route reads the image and sends it to OpenAI**
+
+**4.  OpenAI returns structured JSON** (lines, line numbers, paragraph flags, etc.)
+
+**5.  Your backend inserts parsed data into PostgreSQL**
+
+Note: Front-end development for Steps 1 and 2 is complete.
+
+
+
+### PostgreSQL Database Setup
 
 The first step is verifying that PostgreSQL is installed on the local computer. In terminal, run:
 
@@ -222,5 +248,48 @@ postgres=# SELECT * FROM books;
 ----+--------------------
   1 | Science and Health
 (1 row)
+```
+
+
+
+### Backend API to Parse and Store Text
+
+Step 1: Add the following file:
+
+```
+src/app/api/parse/route.ts
+```
+
+Step 2: Add the following to the `.env.local` file:
+
+```
+OPENAI_API_KEY=sk-...
+DATABASE_URL=postgresql://deepread_user:yourpassword@localhost:5432/deepread_db
+```
+
+Step 3: Install the OpenAI and PostgreSQL client packages. When in cs_projects/CS_DeepRead/frontend folder, run the following installation commands:
+
+```
+npm install openai
+npm install pg
+npm install --save-dev tsx
+```
+
+Verify the install by running the following command:
+
+```
+cat package.json
+```
+
+The output should include:
+
+```
+{
+  ...
+  "dependencies": {
+    "openai": "^4.91.1",
+    "pg": "^8.14.1"
+  }
+}
 ```
 

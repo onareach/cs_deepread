@@ -1,5 +1,10 @@
 {
   "devDependencies": {
     "@types/formidable": "^3.4.5"
+  },
+  "dependencies": {
+    "openai": "^4.91.1",
+    "pg": "^8.14.1",
+    "tsx": "^4.19.3"
   }
 }
